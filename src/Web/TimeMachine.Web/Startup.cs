@@ -39,7 +39,15 @@ namespace TimeMachine.Web
                 options.UseSqlServer(
                     this.Configuration.GetConnectionString("TimeMachineContextConnection")));
 
-            services.AddDefaultIdentity<TimeMachineUser>()
+            services.AddDefaultIdentity<TimeMachineUser>(
+                options => 
+                {
+                    options.Password.RequiredLength = 6;
+                    options.Password.RequireLowercase = false;
+                    options.Password.RequireUppercase = false;
+                    options.Password.RequireNonAlphanumeric = false;
+                    options.Password.RequireDigit = false;
+                })
                 .AddEntityFrameworkStores<TimeMachineContext>();
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
