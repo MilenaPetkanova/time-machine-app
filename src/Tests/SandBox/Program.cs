@@ -1,4 +1,6 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using FunApp.Data;
+using FunApp.Data.Common;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -44,6 +46,7 @@ namespace SandBox
                  options.UseSqlServer(
                     configuration.GetConnectionString("DefaultConnection")));
 
+            services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
         }
     }
 }
