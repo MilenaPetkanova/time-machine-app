@@ -37,7 +37,7 @@ namespace TimeMachine.Web
 
             services.AddDbContext<TimeMachineContext>(options =>
                 options.UseSqlServer(
-                    this.Configuration.GetConnectionString("TimeMachineContextConnection")));
+                    this.Configuration.GetConnectionString("DefaultConnection")));
 
             services.AddDefaultIdentity<TimeMachineUser>(
                 options => 
