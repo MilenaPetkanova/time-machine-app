@@ -30,7 +30,7 @@ code example
 TODO: Add additional notes about how to deploy this on a live system.
 
 ## Built With
-- [ASP.NET Core](https://www.asp.net/core/overview/aspnet-vnext) The web framework used
+- [ASP.NET Core](https://www.asp.net/core/overview/aspnet-vnext) - The web framework used
 - [NuGet](https://www.nuget.org/) - Dependency Management
 
 ## Contributing
@@ -46,17 +46,21 @@ This project is licensed under the [MIT License](https://opensource.org/licenses
 ## Contact
 milenapetkanova@gmail.com
 
-
-# Time Machine App 
 # Documenation
+The software architecture pattern used in this app is Model View Controller (MVC).
 
-Roles:
-Admin - could list all writers
-Writer - crete letters, photos, videos, family tree // could add readers
-Guest - could register/login
+## Roles
+- Admin 
+-- Could **read** all User profiles.
+-- Could list activity statistics for all Users.
+- User  
+-- Could **crete**, **read** and **update** stories, photos, videos, family tree. 
+- Guest 
+-- Could register/login.
+-- 
 
-Models:
-User (personal name, child name, email, Letters, Photos) 
+## Models
+User (n, , email, Letters, Photos) 
 Story (date, age, text)
 Photo (title, caption, url, month, year)
 Video (title, caption, url, month, year)
