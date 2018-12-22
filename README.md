@@ -58,9 +58,9 @@ The software architecture pattern used in this app is Model View Controller (MVC
   - Could **update** the privacy of its own *UserProfile*.
   - Could **read** *Letter* in its own *UserProfile*.
 - Guest 
-  - Could register/login.
-  - Could **read** list of all Users.
-  - Could **read** UserProfile, which privacy is public.
+  - Could register/login as *User*.
+  - Could **read** list of all *Users*.
+  - Could **read** *UserProfile* if privacy is public.
 
 ## Models
 - User 
@@ -107,14 +107,6 @@ The software architecture pattern used in this app is Model View Controller (MVC
   - SenderRelation (optional)
   - Text
 
-## Views
-- Home
-- Story
-- Photo
-- Video
-- FamilyTree
-- Letter
-
 ## Controllers
 - Home 
   - Admin: R
@@ -141,6 +133,13 @@ The software architecture pattern used in this app is Model View Controller (MVC
   - Writer: R
   - Guest: CRU
 
+## Views
+- Home
+- Story
+- Photo
+- Video
+- FamilyTree
+- Letter
 
 
 
