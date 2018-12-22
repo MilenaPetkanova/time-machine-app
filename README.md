@@ -51,8 +51,8 @@ The software architecture pattern used in this app is Model View Controller (MVC
 
 ## Roles
 - Admin 
--- Could **read** all User profiles.
--- Could list activity statistics for all Users.
+  - Could **read** all User profiles.
+  - Could list activity statistics for all Users.
 - User  
 -- Could **crete**, **read** and **update** stories, photos, videos, family tree. 
 - Guest 
