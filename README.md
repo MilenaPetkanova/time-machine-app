@@ -51,37 +51,95 @@ The software architecture pattern used in this app is Model View Controller (MVC
 
 ## Roles
 - Admin 
-  - Could **read** all User profiles.
-  - Could list activity statistics for all Users.
+  - Could **list all** activity statistics for all *Users*.
+  - Could **read** all *User* profiles.
 - User  
--- Could **crete**, **read** and **update** stories, photos, videos, family tree. 
+  - Could **crete**, **read** and **update** its onw *UserProfile*. 
+  - Could **update** the privacy of its own *UserProfile*.
+  - Could **read** *Letter* in its own *UserProfile*.
 - Guest 
--- Could register/login.
--- 
+  - Could register/login.
+  - Could **read** list of all Users.
+  - Could **read** UserProfile, which privacy is public.
 
 ## Models
-User (n, , email, Letters, Photos) 
-Story (date, age, text)
-Photo (title, caption, url, month, year)
-Video (title, caption, url, month, year)
-Family Tree 
-Letter (date, age, sender name, sender relation, text)
+- User 
+  - FullName
+  - CreatorsFullName
+  - Email
+  - Password
+  - *UserProfile*
+- UserProfile
+  - *User*
+  - List of *Story*
+  - List of *Photo*
+  - List of *Video*
+  - *FamilyTree*
+  - List of *Letter*
+- Story
+  - *UserProfile* 
+  - Date
+  - UserAge
+  - Text
+- Photo 
+  - *UserProfile* 
+  - Title
+  - Month
+  - Year
+  - Caption
+  - Url
+- Video
+  - *UserProfile* 
+  - Title
+  - Month
+  - Year
+  - Caption
+  - Url
+- Family Tree 
+  - *UserProfile* 
+  - Url
+  - Text
+- Letter 
+  - *UserProfile* 
+  - Date
+  - UserAge
+  - SenderFullName
+  - SenderRelation (optional)
+  - Text
 
-Views:
-Home page 
-Story (CRU)
-Photo (CRUD)
-Video (CRUD)
-Family Tree (CRUD)
-Letter (CRUD)
+## Views
+- Home
+- Story
+- Photo
+- Video
+- FamilyTree
+- Letter
 
-Controllers:
-Home (Admin: R, Writer: R, Guest: R)
-Stories (Admin: R, Writer: CRU, Guest: NA)
-Photos (Admin: R, Writer: CRU, Guest: NA)
-Videos (Admin: R, Writer: CRU, Guest: NA)
-Family Tree (Admin: R, Writer: CRU, Guest: NA)
-Letter (Admin: R, Writer: R, Guest: CRU)
+## Controllers
+- Home 
+  - Admin: R
+  - Writer: R
+  - Guest: R
+- Stories 
+  - Admin: R
+  - Writer: CRU
+  - Guest: R if *UserProfile* is public
+- Photos 
+  - Admin: R
+  - Writer: CRU
+  - Guest: R if *UserProfile* is public
+- Videos
+  - Admin: R
+  - Writer: CRU
+  - Guest: R if *UserProfile* is public
+- Family Tree
+  - Admin: R
+  - Writer: CRU
+  - Guest: R if *UserProfile* is public
+- Letter
+  - Admin: R
+  - Writer: R
+  - Guest: CRU
 
 
 
