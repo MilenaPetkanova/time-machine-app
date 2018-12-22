@@ -1,18 +1,27 @@
-## Time Machine App
+# Time Machine App
 
-###### Describtion:
 This platform is the spacetime, where parents from the present could tell or show anything to theirs children from the future.
 
-###### Prerequisites:
+## Getting Started
+These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+
+### Prerequisites:
 
 
-###### Installation:
+### Installation:
 
 
-###### Contributing:
+
+## Running the tests
+
+### Break down into end to end tests
+
+### And coding style tests
+
+## Contributing:
 Milena Petkanova
 
-###### License:
+## License:
 MIT License
 
 ###### Contact
