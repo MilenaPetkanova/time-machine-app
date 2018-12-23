@@ -1,13 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Identity;
-
-namespace TimeMachine.Web.Areas.Identity.Data
+﻿namespace TimeMachine.Web.Areas.Identity.Data
 {
-    // Add profile data for application users by adding properties to the TimeMachineUser class
+    using System;
+    using Microsoft.AspNetCore.Identity;
+    using TimeMachine.Data.Models.UserProfile;
+
     public class TimeMachineUser : IdentityUser
     {
+        public string FullName { get; set; }
+
+        public string CreatorFullName { get; set; }
+
+        public DateTime BirthDate { get; set; }
+
+        public int? UserProfileId { get; set; }
+        public UserProfile UserProfile { get; set; }
     }
 }

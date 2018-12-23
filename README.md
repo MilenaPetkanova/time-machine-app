@@ -61,13 +61,15 @@ The software architecture pattern used in this app is Model View Controller (MVC
   - Could register/login as *User*.
   - Could **read** list of all *Users*.
   - Could **read** *UserProfile* if privacy is public.
-
+  - Could **create**, **read**, **update** *Letter*.
+  
 ## Models
 - User 
   - FullName
-  - CreatorsFullName
+  - CreatorFullName
   - Email
   - Password
+  - BirthDate
   - *UserProfile*
 - UserProfile
   - *User*
@@ -78,22 +80,22 @@ The software architecture pattern used in this app is Model View Controller (MVC
   - List of *Letter*
 - Story
   - *UserProfile* 
-  - Date
-  - UserAge
-  - Text
+  - CreatedOn
+  - CurrentUserAge
+  - TextContent
 - Photo 
   - *UserProfile* 
   - Title
-  - Month
-  - Year
   - Caption
+  - UploadedOn
+  - CapturedOn
   - Url
 - Video
   - *UserProfile* 
   - Title
-  - Month
-  - Year
   - Caption
+  - UploadedOn
+  - CapturedOn
   - Url
 - Family Tree 
   - *UserProfile* 
@@ -101,11 +103,11 @@ The software architecture pattern used in this app is Model View Controller (MVC
   - Text
 - Letter 
   - *UserProfile* 
-  - Date
-  - UserAge
+  - CreatedOn
+  - CurrentUserAge
   - SenderFullName
   - SenderRelation (optional)
-  - Text
+  - TextContent
 
 ## Controllers
 - Home 
