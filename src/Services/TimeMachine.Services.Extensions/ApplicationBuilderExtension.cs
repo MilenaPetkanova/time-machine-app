@@ -93,7 +93,7 @@ namespace TimeMachine.Services.Extensions
                     {
                         adminUser = new TimeMachineUser
                         {
-                            UserName = AdminUsername,
+                            UserName = AdminEmail,
                             Email = AdminEmail,
                             BirthDate = DateTime.Today
                         };
@@ -119,7 +119,7 @@ namespace TimeMachine.Services.Extensions
                     {
                         userUser = new TimeMachineUser
                         {
-                            UserName = UserUsername,
+                            UserName = UserEmail,
                             Email = UserEmail,
                             BirthDate = DateTime.Today
                         };
