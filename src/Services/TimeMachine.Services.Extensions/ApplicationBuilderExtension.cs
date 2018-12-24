@@ -30,48 +30,10 @@ namespace TimeMachine.Services.Extensions
                 var db = serviceScope.ServiceProvider.GetService<TimeMachineContext>();
 
                 CreateAdminAndUser(userManager, roleManager);
-                //SeedEvents(db);
             }
 
             return app;
         }
-
-        //private static void SeedEvents(TimeMachineContext db)
-        //{
-        //    if (db.Events.Count() != 0)
-        //    {
-        //        return;
-        //    }
-
-        //    var eventsList = new List<Event>();
-
-        //    var eventEntity1 = new Event
-        //    {
-        //        UUID = "UUID-1",
-        //        Name = "Test Name",
-        //        Place = "Test Place",
-        //        Start = new DateTime(2018, 5, 8),
-        //        End = new DateTime(2018, 5, 8),
-        //        TotalTickets = 28,
-        //        PricePerTicket = 0
-        //    };
-        //    eventsList.Add(eventEntity1);
-
-        //    var eventEntity2 = new Event
-        //    {
-        //        UUID = "UUID-2",
-        //        Name = "Test Name 2",
-        //        Place = "Test Place 2",
-        //        Start = new DateTime(2018, 5, 8),
-        //        End = new DateTime(2018, 5, 8),
-        //        TotalTickets = 28,
-        //        PricePerTicket = 100
-        //    };
-        //    eventsList.Add(eventEntity2);
-
-        //    db.Events.AddRange(eventsList);
-        //    db.SaveChanges();
-        //}
 
         private static void CreateAdminAndUser(UserManager<TimeMachineUser> userManager, RoleManager<IdentityRole> roleManager)
         {
