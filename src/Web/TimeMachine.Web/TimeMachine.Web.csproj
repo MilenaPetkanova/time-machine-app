@@ -6,6 +6,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="8.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.App" />
     <PackageReference Include="Microsoft.AspNetCore.Razor.Design" Version="2.2.0" PrivateAssets="All" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.0" PrivateAssets="All" />
@@ -14,6 +15,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Data\TimeMachine.Data.Models\TimeMachine.Data.Models.csproj" />
     <ProjectReference Include="..\..\Data\TimeMachine.Data\TimeMachine.Data.csproj" />
+    <ProjectReference Include="..\..\Services\TimeMachine.Services.Extensions\TimeMachine.Services.Extensions.csproj" />
   </ItemGroup>
 
 </Project>

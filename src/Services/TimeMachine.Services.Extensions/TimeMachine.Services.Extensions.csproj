@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Data\TimeMachine.Data\TimeMachine.Data.csproj" />
+    <ProjectReference Include="..\TimeMachine.Services.Enums\TimeMachine.Services.Enums.csproj" />
+  </ItemGroup>
+
+</Project>

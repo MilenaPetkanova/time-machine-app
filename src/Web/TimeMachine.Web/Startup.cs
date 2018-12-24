@@ -7,12 +7,14 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using TimeMachine.Web.Models;
 using TimeMachine.Web.Areas.Identity.Data;
+using TimeMachine.Services.Extensions;
 
 namespace TimeMachine.Web
 {
@@ -39,16 +41,25 @@ namespace TimeMachine.Web
                 options.UseSqlServer(
                     this.Configuration.GetConnectionString("DefaultConnection")));
 
-            services.AddDefaultIdentity<TimeMachineUser>(
-                options => 
+            services.Configure<IdentityOptions> (
+                options =>
                 {
                     options.Password.RequiredLength = 6;
                     options.Password.RequireLowercase = false;
                     options.Password.RequireUppercase = false;
                     options.Password.RequireNonAlphanumeric = false;
                     options.Password.RequireDigit = false;
-                })
+                }); 
+
+            services.AddIdentity<TimeMachineUser, IdentityRole>()
+                .AddDefaultUI()
+                .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<TimeMachineContext>();
+
+            //services.AddAutoMapper(cfg =>
+            //{
+            //    cfg.CreateMap<Event, EventViewModel>();
+            //});
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
         }
@@ -72,6 +83,7 @@ namespace TimeMachine.Web
             app.UseCookiePolicy();
 
             app.UseAuthentication();
+            app.UseDatabaseMigration();
 
             app.UseMvc(routes =>
             {

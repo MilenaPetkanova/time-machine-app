@@ -17,7 +17,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{E5E145CD
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SandBox", "Tests\SandBox\SandBox.csproj", "{365685F0-3A07-4E4E-BD05-4AE18F643001}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeMachine.Data.Common", "Data\TimeMachine.Data.Common\TimeMachine.Data.Common.csproj", "{A1BBB834-C36F-4556-8E16-9A8A3498E858}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeMachine.Data.Common", "Data\TimeMachine.Data.Common\TimeMachine.Data.Common.csproj", "{A1BBB834-C36F-4556-8E16-9A8A3498E858}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeMachine.Services.Extensions", "Services\TimeMachine.Services.Extensions\TimeMachine.Services.Extensions.csproj", "{D20F75DB-3075-44D7-97E2-D85AE16E8A59}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Services", "Services", "{17A09EC7-A986-483B-B503-A41B4511136C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeMachine.Services.Constants", "Services\TimeMachine.Services.Constants\TimeMachine.Services.Constants.csproj", "{522C2763-660F-4759-82B9-A9DDAFE3F6CE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeMachine.Services.Enums", "Services\TimeMachine.Services.Enums\TimeMachine.Services.Enums.csproj", "{14D539DC-41A7-4B68-BD07-371EC6BC8BE8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +53,18 @@ Global
 		{A1BBB834-C36F-4556-8E16-9A8A3498E858}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A1BBB834-C36F-4556-8E16-9A8A3498E858}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A1BBB834-C36F-4556-8E16-9A8A3498E858}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D20F75DB-3075-44D7-97E2-D85AE16E8A59}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D20F75DB-3075-44D7-97E2-D85AE16E8A59}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D20F75DB-3075-44D7-97E2-D85AE16E8A59}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D20F75DB-3075-44D7-97E2-D85AE16E8A59}.Release|Any CPU.Build.0 = Release|Any CPU
+		{522C2763-660F-4759-82B9-A9DDAFE3F6CE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{522C2763-660F-4759-82B9-A9DDAFE3F6CE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{522C2763-660F-4759-82B9-A9DDAFE3F6CE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{522C2763-660F-4759-82B9-A9DDAFE3F6CE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{14D539DC-41A7-4B68-BD07-371EC6BC8BE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{14D539DC-41A7-4B68-BD07-371EC6BC8BE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{14D539DC-41A7-4B68-BD07-371EC6BC8BE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{14D539DC-41A7-4B68-BD07-371EC6BC8BE8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -55,6 +75,9 @@ Global
 		{E6D06183-41DA-4504-9056-547A2BB63838} = {23C39068-B428-4CC1-80BE-A917C7E98124}
 		{365685F0-3A07-4E4E-BD05-4AE18F643001} = {E5E145CD-AD44-44E3-9E89-57BD90E35613}
 		{A1BBB834-C36F-4556-8E16-9A8A3498E858} = {23C39068-B428-4CC1-80BE-A917C7E98124}
+		{D20F75DB-3075-44D7-97E2-D85AE16E8A59} = {17A09EC7-A986-483B-B503-A41B4511136C}
+		{522C2763-660F-4759-82B9-A9DDAFE3F6CE} = {17A09EC7-A986-483B-B503-A41B4511136C}
+		{14D539DC-41A7-4B68-BD07-371EC6BC8BE8} = {17A09EC7-A986-483B-B503-A41B4511136C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F00C5945-7481-4B7F-9012-E87E1131AF63}
