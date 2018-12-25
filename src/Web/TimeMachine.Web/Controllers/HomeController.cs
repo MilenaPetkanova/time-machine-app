@@ -29,7 +29,7 @@ namespace TimeMachine.Web.Controllers
             var users = this._userRepository.All()
                 .OrderBy(x => Guid.NewGuid())
                 .Select(
-                x => new IndexUserProfileViewModel
+                x => new IndexUserViewModel
                 {
                     UserFullName = x.UserName
                 });

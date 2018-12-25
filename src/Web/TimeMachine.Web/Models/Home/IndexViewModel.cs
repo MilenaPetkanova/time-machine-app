@@ -4,6 +4,6 @@
 
     public class IndexViewModel
     {
-        public IEnumerable<IndexUserProfileViewModel> UserProfiles { get; set; }
+        public IEnumerable<IndexUserViewModel> UserProfiles { get; set; }
     }
 }

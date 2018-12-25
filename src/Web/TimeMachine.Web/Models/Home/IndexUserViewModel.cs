@@ -1,6 +1,6 @@
 ﻿namespace TimeMachine.Web.Models.Home
 {
-    public class IndexUserProfileViewModel
+    public class IndexUserViewModel
     {
         public string UserFullName { get; set; }
     }

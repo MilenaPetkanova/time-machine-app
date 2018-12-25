@@ -1,7 +1,7 @@
 ﻿namespace TimeMachine.Services.DataServices.Contracts
 {
     using System.Collections.Generic;
-    using TimeMachine.Services.Models.UserProfiles;
+    using TimeMachine.Web.Models.Home;
 
     public interface IUserProfilesService
     {

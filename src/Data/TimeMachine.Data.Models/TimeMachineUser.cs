@@ -14,6 +14,8 @@
             this.Letters = new List<Letter>();
         }
 
+        public bool IsProfilePrivate { get; set; }
+
         public string FullName { get; set; }
 
         public string CreatorFullName { get; set; }
