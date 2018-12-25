@@ -12,11 +12,6 @@ namespace MyProject
     {
         public TimeMachineContext CreateDbContext(string[] args)
         {
-            //var optionsBuilder = new DbContextOptionsBuilder<TimeMachineContext>();
-            //optionsBuilder.Use("Data Source=blog.db");
-
-            //return new TimeMachineContext(optionsBuilder.Options);
-
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)

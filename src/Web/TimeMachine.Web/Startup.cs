@@ -15,6 +15,9 @@ using Microsoft.Extensions.DependencyInjection;
 using TimeMachine.Web.Models;
 using TimeMachine.Web.Areas.Identity.Data;
 using TimeMachine.Services.Extensions;
+using TimeMachine.Services.Mapper;
+using FunApp.Data.Common;
+using FunApp.Data;
 
 namespace TimeMachine.Web
 {
@@ -37,10 +40,12 @@ namespace TimeMachine.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            // Db Configuratons
             services.AddDbContext<TimeMachineContext>(options =>
                 options.UseSqlServer(
                     this.Configuration.GetConnectionString("DefaultConnection")));
 
+            // Identity Configuratons
             services.Configure<IdentityOptions> (
                 options =>
                 {
@@ -56,12 +61,20 @@ namespace TimeMachine.Web
                 .AddDefaultTokenProviders()
                 .AddEntityFrameworkStores<TimeMachineContext>();
 
-            //services.AddAutoMapper(cfg =>
-            //{
-            //    cfg.CreateMap<Event, EventViewModel>();
-            //});
+            // Auto Mapper Configurations
+            var mappingConfig = new MapperConfiguration(mc =>
+            {
+                mc.AddProfile(new MappingProfile());
+            });
+
+            IMapper mapper = mappingConfig.CreateMapper();
+            services.AddSingleton(mapper);
 
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_1);
+
+            // App Servises Configurations
+            services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

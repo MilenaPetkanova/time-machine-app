@@ -17,7 +17,6 @@ namespace TimeMachine.Web.Models
         {
         }
 
-        public DbSet<UserProfile> UserProfiles { get; set; }
         public DbSet<Story> Stories { get; set; }
         public DbSet<Photo> Photos { get; set; }
         public DbSet<Letter> Letters { get; set; }

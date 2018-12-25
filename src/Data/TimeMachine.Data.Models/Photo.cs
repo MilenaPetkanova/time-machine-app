@@ -2,6 +2,7 @@
 {
     using System;
     using TimeMachine.Data.Common;
+    using TimeMachine.Web.Areas.Identity.Data;
 
     public class Photo : BaseModel<int>
     {
@@ -15,7 +16,7 @@
 
         public DateTime CapturedOn { get; set; }
 
-        public int? UserProfileId { get; set; }
-        public UserProfile UserProfile { get; set; }
+        public int? UserId { get; set; }
+        public TimeMachineUser User { get; set; }
     }
 }

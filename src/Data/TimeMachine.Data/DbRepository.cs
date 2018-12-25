@@ -12,13 +12,13 @@ namespace FunApp.Data
     public class DbRepository<TEntity> : IRepository<TEntity>, IDisposable
         where TEntity : class
     {
-        private readonly TimeMachineContext context;
+        private readonly TimeMachineContext _context;
         private DbSet<TEntity> dbSet;
 
         public DbRepository(TimeMachineContext context)
         {
-            this.context = context;
-            this.dbSet = this.context.Set<TEntity>();
+            this._context = context;
+            this.dbSet = this._context.Set<TEntity>();
         }
 
         public Task AddAsync(TEntity entity)
@@ -38,12 +38,12 @@ namespace FunApp.Data
 
         public Task<int> SaveChangesAsync()
         {
-            return this.context.SaveChangesAsync();
+            return this._context.SaveChangesAsync();
         }
 
         public void Dispose()
         {
-            this.context.Dispose();
+            this._context.Dispose();
         }
     }
 }
