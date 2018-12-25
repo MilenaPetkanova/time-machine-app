@@ -64,50 +64,48 @@ The software architecture pattern used in this app is Model View Controller (MVC
   - Could **create**, **read**, **update** *Letter*.
   
 ## Models
-- User 
+- TimeMachineUser 
+  - IsProfilePrivate
   - FullName
   - CreatorFullName
   - Email
   - Password
   - BirthDate
-  - *UserProfile*
-- UserProfile
-  - *User*
   - List of *Story*
   - List of *Photo*
   - List of *Video*
   - *FamilyTree*
   - List of *Letter*
-- Story
-  - *UserProfile* 
+- Story 
   - CreatedOn
   - CurrentUserAge
   - TextContent
+  - *TimeMachineUser*
 - Photo 
-  - *UserProfile* 
   - Title
   - Caption
   - UploadedOn
   - CapturedOn
   - Url
+  - *TimeMachineUser*
 - Video
-  - *UserProfile* 
   - Title
   - Caption
   - UploadedOn
   - CapturedOn
   - Url
+  - *TimeMachineUser*
 - Family Tree 
-  - *UserProfile* 
   - Url
   - Text
+  - *TimeMachineUser*
 - Letter 
-  - *UserProfile* 
   - CreatedOn
   - CurrentUserAge
   - SenderFullName
   - SenderRelation (optional)
   - TextContent
+  - *TimeMachineUser*
 
 ## Controllers
 - Home 
