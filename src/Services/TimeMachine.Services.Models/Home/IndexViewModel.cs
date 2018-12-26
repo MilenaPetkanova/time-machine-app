@@ -1,4 +1,4 @@
-﻿namespace TimeMachine.Web.Models.Home
+﻿namespace TimeMachine.Services.Models.Home
 {
     using System.Collections.Generic;
 

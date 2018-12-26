@@ -1,46 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
-using FunApp.Data.Common;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Mvc;
-using TimeMachine.Data.Models.UserProfile;
-using TimeMachine.Web.Areas.Identity.Data;
-using TimeMachine.Web.Models;
-using TimeMachine.Web.Models.Home;
-
-namespace TimeMachine.Web.Controllers
+﻿namespace TimeMachine.Web.Controllers
 {
+    using System.Diagnostics;
+    using AutoMapper;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Mvc;
+
+    using TimeMachine.Web.Areas.Identity.Data;
+    using TimeMachine.Web.Models;
+    using TimeMachine.Services.DataServices.Contracts;
+    using TimeMachine.Services.Models.Stories;
+
     public class HomeController : BaseController
     {
-        private readonly IRepository<TimeMachineUser> _userRepository;
+        private readonly IStoriesService _storiesService;
 
-        public HomeController(UserManager<TimeMachineUser> userManager, SignInManager<TimeMachineUser> signInManager, IMapper mapper, IRepository<TimeMachineUser> userRepository)
+        public HomeController(UserManager<TimeMachineUser> userManager, SignInManager<TimeMachineUser> signInManager, IMapper mapper, IStoriesService storiesService)
             : base(userManager, signInManager, mapper)
         {
-            this._userRepository = userRepository;
+            this._storiesService = storiesService;
         }
 
         public IActionResult Index()
         {
-            var users = this._userRepository.All()
-                .OrderBy(x => Guid.NewGuid())
-                .Select(
-                x => new IndexUserViewModel
-                {
-                    UserFullName = x.UserName
-                });
+            var stories = this._storiesService.GetAll();
 
-            var viewModel = new IndexViewModel
+            var model = new StoriesViewModel
             {
-                UserProfiles = users
+                Stories = stories
             };
 
-
-            return this.View(viewModel);
+            return this.View(model);
         }
 
         public IActionResult About()

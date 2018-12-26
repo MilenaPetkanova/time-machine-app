@@ -1,17 +1,17 @@
-﻿using FunApp.Data;
-using FunApp.Data.Common;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.IO;
-using System.Linq;
-using System.Text;
-using TimeMachine.Web.Models;
-
-namespace SandBox
+﻿namespace SandBox
 {
-    class Program
+    using TimeMachine.Data;
+    using TimeMachine.Data.Common;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using System;
+    using System.IO;
+    using System.Linq;
+    using System.Text;
+    using TimeMachine.Web.Models;
+
+    public class Program
     {
         static void Main(string[] args)
         {

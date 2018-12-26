@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Data\TimeMachine.Data\TimeMachine.Data.csproj" />
+    <ProjectReference Include="..\TimeMachine.Services.Constants\TimeMachine.Services.Constants.csproj" />
     <ProjectReference Include="..\TimeMachine.Services.Enums\TimeMachine.Services.Enums.csproj" />
   </ItemGroup>
 

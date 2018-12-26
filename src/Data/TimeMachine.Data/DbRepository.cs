@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using FunApp.Data.Common;
-using Microsoft.EntityFrameworkCore;
-using TimeMachine.Web.Models;
-
-namespace FunApp.Data
+﻿namespace TimeMachine.Data
 {
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using TimeMachine.Data.Common;
+    using Microsoft.EntityFrameworkCore;
+    using TimeMachine.Web.Models;
+
     public class DbRepository<TEntity> : IRepository<TEntity>, IDisposable
         where TEntity : class
     {

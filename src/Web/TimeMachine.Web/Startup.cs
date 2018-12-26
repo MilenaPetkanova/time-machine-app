@@ -1,26 +1,28 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.HttpsPolicy;
-using AutoMapper;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using TimeMachine.Web.Models;
-using TimeMachine.Web.Areas.Identity.Data;
-using TimeMachine.Services.Extensions;
-using TimeMachine.Services.Mapper;
-using FunApp.Data.Common;
-using FunApp.Data;
-
-namespace TimeMachine.Web
+﻿namespace TimeMachine.Web
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.AspNetCore.Hosting;
+    using Microsoft.AspNetCore.Http;
+    using Microsoft.AspNetCore.HttpsPolicy;
+    using AutoMapper;
+    using Microsoft.AspNetCore.Mvc;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.Configuration;
+    using Microsoft.Extensions.DependencyInjection;
+    using TimeMachine.Web.Models;
+    using TimeMachine.Web.Areas.Identity.Data;
+    using TimeMachine.Services.Extensions;
+    using TimeMachine.Services.Mapper;
+    using TimeMachine.Data.Common;
+    using TimeMachine.Data;
+    using TimeMachine.Services.DataServices.Contracts;
+    using TimeMachine.Services.DataServices;
+
     public class Startup
     {
         public Startup(IConfiguration configuration)
@@ -74,6 +76,7 @@ namespace TimeMachine.Web
 
             // App Servises Configurations
             services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
+            services.AddScoped<IStoriesService, StoriesService>();
 
         }
 

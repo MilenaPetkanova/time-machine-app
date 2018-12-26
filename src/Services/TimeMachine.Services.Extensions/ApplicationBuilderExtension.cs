@@ -1,25 +1,21 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.DependencyInjection;
-using System;
-using System.Threading.Tasks;
-using TimeMachine.Services.Enums;
-using TimeMachine.Web.Areas.Identity.Data;
-using TimeMachine.Web.Models;
-
-namespace TimeMachine.Services.Extensions
+﻿namespace TimeMachine.Services.Extensions
 {
+    using Microsoft.AspNetCore.Builder;
+    using Microsoft.AspNetCore.Identity;
+    using Microsoft.EntityFrameworkCore;
+    using Microsoft.Extensions.DependencyInjection;
+
+    using System;
+    using System.Linq;
+    using System.Threading.Tasks;
+
+    using TimeMachine.Services.Constants;
+    using TimeMachine.Services.Enums;
+    using TimeMachine.Web.Areas.Identity.Data;
+    using TimeMachine.Web.Models;
+
     public static class ApplicationBuilderExtension
     {
-        private const string AdminUsername = "AdminUsername";
-        private const string AdminEmail = "admin@test.com";
-        private const string AdminPassword = "test123";
-
-        private const string UserUsername = "UserUsername";
-        private const string UserEmail = "user@test.com";
-        private const string UserPassword = "test123";
-
         public static IApplicationBuilder UseDatabaseMigration(this IApplicationBuilder app)
         {
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
@@ -29,40 +25,27 @@ namespace TimeMachine.Services.Extensions
                 var roleManager = serviceScope.ServiceProvider.GetService<RoleManager<IdentityRole>>();
                 var db = serviceScope.ServiceProvider.GetService<TimeMachineContext>();
 
-                CreateAdminAndUser(userManager, roleManager);
+                CreateRolesAndSeedAdminAndUser(userManager, roleManager);
+                CreateStories(userManager);
             }
 
             return app;
         }
 
-        private static void CreateAdminAndUser(UserManager<TimeMachineUser> userManager, RoleManager<IdentityRole> roleManager)
+        private static void CreateRolesAndSeedAdminAndUser(UserManager<TimeMachineUser> userManager, RoleManager<IdentityRole> roleManager)
         {
             Task.Run(async () =>
             {
+                // Create Roles
                 var adminRole = UserRoles.Admin.ToString();
                 var adminRoleExists = await roleManager.RoleExistsAsync(adminRole);
-                
+
                 if (!adminRoleExists)
                 {
                     await roleManager.CreateAsync(new IdentityRole
                     {
                         Name = adminRole
                     });
-
-                    var adminUser = await userManager.FindByNameAsync(AdminUsername);
-
-                    if (adminUser == null)
-                    {
-                        adminUser = new TimeMachineUser
-                        {
-                            UserName = AdminEmail,
-                            Email = AdminEmail,
-                            BirthDate = DateTime.Today
-                        };
-
-                        await userManager.CreateAsync(adminUser, AdminPassword);
-                        await userManager.AddToRoleAsync(adminUser, adminRole);
-                    }
                 }
 
                 var userRole = UserRoles.User.ToString();
@@ -74,23 +57,42 @@ namespace TimeMachine.Services.Extensions
                     {
                         Name = userRole
                     });
-
-                    var userUser = await userManager.FindByNameAsync(UserUsername);
-
-                    if (userUser == null)
-                    {
-                        userUser = new TimeMachineUser
-                        {
-                            UserName = UserEmail,
-                            Email = UserEmail,
-                            BirthDate = DateTime.Today
-                        };
-
-                        await userManager.CreateAsync(userUser, UserPassword);
-                        await userManager.AddToRoleAsync(userUser, userRole);
-                    }
                 }
+
+                if (!userManager.Users.Any())
+                {
+                    // Create Admin
+                    var adminUser = new TimeMachineUser
+                    {
+                        UserName = Constants.AdminEmail,
+                        Email = Constants.AdminEmail,
+                        IsProfilePrivate = true
+                    };
+
+                    await userManager.CreateAsync(adminUser, Constants.AdminPassword);
+                    await userManager.AddToRoleAsync(adminUser, adminRole);
+
+                    // Create User
+                    var userUser = new TimeMachineUser
+                    {
+                        UserName = Constants.UserEmail,
+                        Email = Constants.UserEmail,
+                        FullName = Constants.UserFullName,
+                        BirthDate = DateTime.Parse(Constants.UserBirthDate),
+                        IsProfilePrivate = false
+
+                    };
+
+                    await userManager.CreateAsync(userUser, Constants.UserPassword);
+                    await userManager.AddToRoleAsync(userUser, userRole);
+                }
+
             }).Wait();
+        }
+
+        private static void CreateStories(UserManager<TimeMachineUser> userManager)
+        {
+
         }
     }
 }
