@@ -29,5 +29,10 @@
 
             return stories;
         }
+
+        public int GetCount()
+        {
+            return this.GetAll().Count();
+        }
     }
 }
