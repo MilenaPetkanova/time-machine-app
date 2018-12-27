@@ -1,10 +1,8 @@
 ﻿namespace TimeMachine.Services.DataServices
 {
-    using System;
     using System.Collections.Generic;
     using System.Linq;
 
-    using TimeMachine.Data;
     using TimeMachine.Data.Common;
     using TimeMachine.Data.Models.UserProfile;
     using TimeMachine.Services.DataServices.Contracts;
@@ -19,20 +17,16 @@
             this._storiesRepository = storiesRepository;
         }
 
-        public IEnumerable<StoryViewModel> GetAll()
+        public IEnumerable<StoryViewModel> GetAllUserStories(string userId)
         {
-            var stories = this._storiesRepository.All()
+            var storiesViewModels = this._storiesRepository.All()
+                .Where(s => s.UserId == userId)
                 .Select(x => new StoryViewModel
-                    {
-                        Content = x.TextContent
-                    }).ToList();
+                {
+                    Content = x.TextContent
+                }).ToList();
 
-            return stories;
-        }
-
-        public int GetCount()
-        {
-            return this.GetAll().Count();
+            return storiesViewModels;
         }
     }
 }

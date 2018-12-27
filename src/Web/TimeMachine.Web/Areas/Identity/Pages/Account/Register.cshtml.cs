@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Extensions.Logging;
+using TimeMachine.Services.Enums;
 using TimeMachine.Web.Areas.Identity.Data;
 
 namespace TimeMachine.Web.Areas.Identity.Pages.Account
@@ -41,6 +42,20 @@ namespace TimeMachine.Web.Areas.Identity.Pages.Account
         public class InputModel
         {
             [Required]
+            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Display(Name = "Full name")]
+            public string FullName { get; set; }
+
+            [Required]
+            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Display(Name = "Creator full name")]
+            public string CreatorFullName { get; set; }
+
+            [DataType(DataType.Date)]
+            [Display(Name = "Birth date")]
+            public DateTime BirthDate { get; set; }
+
+            [Required]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -67,10 +82,19 @@ namespace TimeMachine.Web.Areas.Identity.Pages.Account
             returnUrl = returnUrl ?? Url.Content("~/");
             if (ModelState.IsValid)
             {
-                var user = new TimeMachineUser { UserName = Input.Email, Email = Input.Email };
+                var user = new TimeMachineUser
+                {
+                    UserName = Input.Email,
+                    Email = Input.Email,
+                    FullName = Input.FullName,
+                    CreatorFullName = Input.CreatorFullName,
+                    BirthDate = Input.BirthDate
+                };
                 var result = await _userManager.CreateAsync(user, Input.Password);
                 if (result.Succeeded)
                 {
+                    await _userManager.AddToRoleAsync(user, UserRoles.User.ToString());
+
                     _logger.LogInformation("User created a new account with password.");
 
                     var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);

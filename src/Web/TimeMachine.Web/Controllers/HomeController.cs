@@ -22,11 +22,13 @@
 
         public IActionResult Index()
         {
-            var stories = this._storiesService.GetAll();
+            var currentUserId = _userManager.GetUserId(User);
+
+            var storiesViewModels = this._storiesService.GetAllUserStories(currentUserId);
 
             var model = new StoriesViewModel
             {
-                Stories = stories
+                Stories = storiesViewModels
             };
 
             return this.View(model);

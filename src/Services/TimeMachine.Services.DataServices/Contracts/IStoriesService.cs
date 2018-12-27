@@ -5,8 +5,6 @@
 
     public interface IStoriesService
     {
-        IEnumerable<StoryViewModel> GetAll();
-
-        int GetCount();
+        IEnumerable<StoryViewModel> GetAllUserStories(string userId);
     }
 }

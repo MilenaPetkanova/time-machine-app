@@ -3,8 +3,10 @@
     using System.Collections.Generic;
     using TimeMachine.Services.Models.Home;
 
-    public interface IUserService
+    public interface IUsersService
     {
         IEnumerable<IndexUserViewModel> GetAll();
+
+        int GetCount();
     }
 }

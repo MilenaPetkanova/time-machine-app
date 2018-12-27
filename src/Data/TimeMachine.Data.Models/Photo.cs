@@ -16,7 +16,7 @@
 
         public DateTime CapturedOn { get; set; }
 
-        public int? UserId { get; set; }
+        public string UserId { get; set; }
         public TimeMachineUser User { get; set; }
     }
 }
