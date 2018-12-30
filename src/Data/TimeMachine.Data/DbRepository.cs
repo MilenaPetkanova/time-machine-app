@@ -3,9 +3,9 @@
     using System;
     using System.Linq;
     using System.Threading.Tasks;
-    using TimeMachine.Data.Common;
     using Microsoft.EntityFrameworkCore;
     using TimeMachine.Web.Models;
+    using TimeMachine.Data.Common.Contracts;
 
     public class DbRepository<TEntity> : IRepository<TEntity>, IDisposable
         where TEntity : class
@@ -27,6 +27,11 @@
         public IQueryable<TEntity> All()
         {
             return this.dbSet;
+        }
+
+        public IQueryable<TEntity> GetLast(int count)
+        {
+            return this.dbSet.TakeLast(count);
         }
 
         public void Delete(TEntity entity)

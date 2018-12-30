@@ -1,4 +1,4 @@
-﻿namespace TimeMachine.Data.Common
+﻿namespace TimeMachine.Data.Common.Contracts
 {
     using System.Linq;
     using System.Threading.Tasks;
@@ -7,6 +7,8 @@
         where TEntity : class
     {
         IQueryable<TEntity> All();
+
+        IQueryable<TEntity> GetLast(int count);
 
         Task AddAsync(TEntity entity);
 

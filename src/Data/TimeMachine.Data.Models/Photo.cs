@@ -1,7 +1,7 @@
 ﻿namespace TimeMachine.Data.Models.UserProfile
 {
     using System;
-    using TimeMachine.Data.Common;
+    using TimeMachine.Data.Common.Abstraction;
     using TimeMachine.Web.Areas.Identity.Data;
 
     public class Photo : BaseModel<int>

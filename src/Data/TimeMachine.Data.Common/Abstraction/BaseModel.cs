@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TimeMachine.Data.Common
+﻿namespace TimeMachine.Data.Common.Abstraction
 {
     public abstract class BaseModel<T>
     {

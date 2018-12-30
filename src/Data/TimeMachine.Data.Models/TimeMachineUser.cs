@@ -20,6 +20,8 @@
 
         public string CreatorFullName { get; set; }
 
+        public DateTime CreateProfileOn { get; set; }
+
         public DateTime BirthDate { get; set; }
 
         public IList<Story> Stories { get; set; }
