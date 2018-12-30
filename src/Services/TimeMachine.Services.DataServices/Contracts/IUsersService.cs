@@ -7,6 +7,8 @@
     {
         IEnumerable<IndexUserViewModel> GetAll();
 
-        int GetCount();
+        IEnumerable<IndexUserViewModel> GetAllPublic();
+
+        IEnumerable<IndexUserViewModel> GetLast(int count);
     }
 }

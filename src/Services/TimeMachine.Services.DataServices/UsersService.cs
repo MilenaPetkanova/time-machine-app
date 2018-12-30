@@ -4,7 +4,7 @@
     using System.Collections.Generic;
     using System.Linq;
 
-    using TimeMachine.Data.Common;
+    using TimeMachine.Data.Common.Contracts;
     using TimeMachine.Services.DataServices.Contracts;
     using TimeMachine.Services.Models.Home;
     using TimeMachine.Web.Areas.Identity.Data;
@@ -20,21 +20,42 @@
 
         public IEnumerable<IndexUserViewModel> GetAll()
         {
-            var userViewModels = _usersRepository.All()
-                .Where(u => u.IsProfilePrivate.Equals("false"))
-                .OrderBy(u => Guid.NewGuid())
+            var allUserViewModels = _usersRepository.All()
                 .Select(u => new IndexUserViewModel
                 {
                     FullName = u.FullName,
                     BirthDate = u.BirthDate.ToString()
                 }).ToList();
 
-            return userViewModels;
+            return allUserViewModels;
         }
 
-        public int GetCount()
+        public IEnumerable<IndexUserViewModel> GetAllPublic()
         {
-            return this.GetAll().Count();
+            var allPublicUserViewModels = _usersRepository.All()
+                .Where(u => u.IsProfilePrivate.Equals("false"))
+                //.OrderBy(u => Guid.NewGuid())
+                .Select(u => new IndexUserViewModel
+                {
+                    FullName = u.FullName,
+                    BirthDate = u.BirthDate.ToString()
+                }).ToList();
+
+            return allPublicUserViewModels;
+        }
+
+        public IEnumerable<IndexUserViewModel> GetLast(int count)
+        {
+            var allPublicUserViewModels = _usersRepository.All()
+                .Where(u => u.IsProfilePrivate.Equals("false"))
+                .TakeLast(count)
+                .Select(u => new IndexUserViewModel
+                {
+                    FullName = u.FullName,
+                    BirthDate = u.BirthDate.ToString()
+                }).ToList();
+
+            return allPublicUserViewModels;
         }
     }
 }

@@ -1,7 +1,4 @@
-﻿using System;
-using TimeMachine.Services.Enums;
-
-namespace TimeMachine.Services.Constants
+﻿namespace TimeMachine.Services.Constants
 {
     public static class Constants
     {

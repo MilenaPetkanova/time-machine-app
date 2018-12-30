@@ -1,9 +1,9 @@
-﻿namespace TimeMachine.Services.Models.Home
-{
-    using System.Collections.Generic;
+﻿//namespace TimeMachine.Services.Models.Home
+//{
+//    using System.Collections.Generic;
 
-    public class IndexViewModel
-    {
-        public IEnumerable<IndexUserViewModel> UserProfiles { get; set; }
-    }
-}
+//    public class IndexViewModel
+//    {
+//        public IEnumerable<IndexUserViewModel> UserProfiles { get; set; }
+//    }
+//}

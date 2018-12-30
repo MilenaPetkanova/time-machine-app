@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace TimeMachine.Services.Enums
+﻿namespace TimeMachine.Services.Enums
 {
     public enum UserRoles
     {
