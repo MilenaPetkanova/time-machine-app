@@ -68,6 +68,7 @@ The software architecture pattern used in this app is Model View Controller (MVC
   - IsProfilePrivate
   - FullName
   - CreatorFullName
+  - CreateProfileOn
   - Email
   - Password
   - BirthDate
@@ -140,6 +141,12 @@ The software architecture pattern used in this app is Model View Controller (MVC
 - Video
 - FamilyTree
 - Letter
+
+## TODO:
+- TimeMachine.Services.Extention
+  - move ApplicationBuilderExtension static class to TimeMachine.Data and rename to DataSeeder
+- TimeMachine.Services.Mapper
+  - start using MappingProfle
 
 
 
