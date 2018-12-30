@@ -1,15 +1,16 @@
 ﻿namespace TimeMachine.Web
 {
+    using System;
+    using AutoMapper;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Hosting;
     using Microsoft.AspNetCore.Http;
-    using AutoMapper;
     using Microsoft.AspNetCore.Mvc;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
-
+    using Microsoft.AspNetCore.Authentication.Cookies;
     using TimeMachine.Web.Models;
     using TimeMachine.Web.Areas.Identity.Data;
     using TimeMachine.Services.Extensions;
@@ -18,8 +19,7 @@
     using TimeMachine.Data;
     using TimeMachine.Services.DataServices.Contracts;
     using TimeMachine.Services.DataServices;
-    using System;
-    using Microsoft.AspNetCore.Authentication.Cookies;
+    using TimeMachine.Data.Common.Contracts;
 
     public class Startup
     {
@@ -80,8 +80,6 @@
                 options.Cookie.HttpOnly = true;
                 options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
                 options.LoginPath = "/Identity/Account/Login";
-                // ReturnUrlParameter requires 
-                //using Microsoft.AspNetCore.Authentication.Cookies;
                 options.ReturnUrlParameter = CookieAuthenticationDefaults.ReturnUrlParameter;
                 options.SlidingExpiration = true;
             });

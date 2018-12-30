@@ -4,46 +4,30 @@
     using AutoMapper;
     using Microsoft.AspNetCore.Identity;
     using Microsoft.AspNetCore.Mvc;
-
     using TimeMachine.Web.Areas.Identity.Data;
-    using TimeMachine.Web.Models;
     using TimeMachine.Services.DataServices.Contracts;
-    using TimeMachine.Services.Models.Stories;
+    using TimeMachine.Services.Models;
 
     public class HomeController : BaseController
     {
-        private readonly IStoriesService _storiesService;
+        private readonly IUsersService _usersService;
 
-        public HomeController(UserManager<TimeMachineUser> userManager, SignInManager<TimeMachineUser> signInManager, IMapper mapper, IStoriesService storiesService)
+        public HomeController(UserManager<TimeMachineUser> userManager, SignInManager<TimeMachineUser> signInManager, IMapper mapper, IUsersService usersService)
             : base(userManager, signInManager, mapper)
         {
-            this._storiesService = storiesService;
+            this._usersService = usersService;
         }
 
         public IActionResult Index()
         {
-            var currentUserId = _userManager.GetUserId(User);
+            var usersViewModels = this._usersService.GetAllPublic();
 
-            var storiesViewModels = this._storiesService.GetAllUserStories(currentUserId);
-
-            var model = new StoriesViewModel
-            {
-                Stories = storiesViewModels
-            };
-
-            return this.View(model);
+            return this.View(usersViewModels);
         }
 
         public IActionResult About()
         {
-            ViewData["Message"] = "Your application description page.";
-
-            return View();
-        }
-
-        public IActionResult Contact()
-        {
-            ViewData["Message"] = "Your contact page.";
+            ViewData["Message"] = "This platform is the spacetime, where parents from the present could tell or show anything to theirs children from the future.";
 
             return View();
         }

@@ -6,21 +6,49 @@
 
 @if (SignInManager.IsSignedIn(User))
 {
-    <form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
-        <ul class="nav navbar-nav navbar-right">
-            <li>
-                <a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @UserManager.GetUserName(User)!</a>
-            </li>
-            <li>
-                <button type="submit" class="btn btn-link navbar-btn navbar-link">Logout</button>
-            </li>
-        </ul>
-    </form>
+	<form asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })" method="post" id="logoutForm" class="navbar-right">
+		<ul class="nav navbar-nav navbar-right">
+			<li>
+				<div class="dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Dropdown button
+					</button>
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						<a class="dropdown-item" href="#">Action</a>
+						<a class="dropdown-item" href="#">Another action</a>
+						<a class="dropdown-item" href="#">Something else here</a>
+					</div>
+				</div>
+			</li>
+			<li>
+				<a asp-controller="Home" asp-action="Index">@UserManager.GetUserName(User)</a>
+			</li>
+			<li>
+				<div class="dropdown show">
+					<a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+						Create
+					</a>
+
+					<div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+						<a class="dropdown-item" asp-controller="Stories" asp-action="Index">All Events</a>
+						<a class="dropdown-item" asp-controller="Stories" asp-action="Delete">My Events</a>
+						<a class="dropdown-item" asp-controller="Stories" asp-action="Edit">Create Event</a>
+					</div>
+				</div>
+			</li>
+			<li>
+				<a asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Settings</a>
+			</li>
+			<li>
+				<button type="submit" class="btn btn-link navbar-btn navbar-link">Logout</button>
+			</li>
+		</ul>
+	</form>
 }
 else
 {
-    <ul class="nav navbar-nav navbar-right">
-        <li><a asp-area="Identity" asp-page="/Account/Register">Register</a></li>
-        <li><a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
-    </ul>
+	<ul class="nav navbar-nav navbar-right">
+		<li><a asp-area="Identity" asp-page="/Account/Register">Register</a></li>
+		<li><a asp-area="Identity" asp-page="/Account/Login">Login</a></li>
+	</ul>
 }

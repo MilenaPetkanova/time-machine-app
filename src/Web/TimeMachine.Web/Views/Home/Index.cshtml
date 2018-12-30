@@ -1,13 +1,15 @@
-﻿@model TimeMachine.Services.Models.Stories.StoriesViewModel
+﻿@model IEnumerable<TimeMachine.Services.Models.Home.IndexUserViewModel>;
+
 @{
-    ViewData["Title"] = "Home Page";
+	ViewData["Title"] = "Home Page";
 }
 
 <div class="container">
 	<div class="list-group">
-		@foreach (var userProfile in Model.Stories)
+		@foreach (var userProfile in Model)
 		{
-			<a href="#" class="list-group-item list-group-item-action">@userProfile.Content</a>
+			<a href="#" class="list-group-item list-group-item-action">@userProfile.FullName</a>
+			<a href="#" class="list-group-item list-group-item-action">@userProfile.BirthDate</a>
 		}
 	</div>
 </div>

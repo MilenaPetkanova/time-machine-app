@@ -29,14 +29,9 @@
         {
             var currentUserId = _userManager.GetUserId(User);
 
-            var storiesViewModels = this._storiesService.GetAllUserStories(currentUserId);
+            var allStoriesViewModels = this._storiesService.GetAllUserStories(currentUserId);
 
-            var model = new StoriesViewModel
-            {
-                Stories = storiesViewModels
-            };
-
-            return this.View(model);
+            return this.View(allStoriesViewModels);
         }
 
         //    // GET: Stories/Details/5
