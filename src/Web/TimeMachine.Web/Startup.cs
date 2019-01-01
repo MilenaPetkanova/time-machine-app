@@ -14,11 +14,10 @@
     using TimeMachine.Web.Models;
     using TimeMachine.Web.Areas.Identity.Data;
     using TimeMachine.Services.Mapper;
-    using TimeMachine.Data.Common;
     using TimeMachine.Data;
     using TimeMachine.Services.DataServices.Contracts;
     using TimeMachine.Services.DataServices;
-    using TimeMachine.Data.Common.Contracts;
+    using TimeMachine.Data.Contracts;
     using TimeMachine.Services.Extensions;
 
     public class Startup

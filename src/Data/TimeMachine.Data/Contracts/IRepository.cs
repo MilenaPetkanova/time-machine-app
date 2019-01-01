@@ -1,4 +1,4 @@
-﻿namespace TimeMachine.Data.Common.Contracts
+﻿namespace TimeMachine.Data.Contracts
 {
     using System.Linq;
     using System.Threading.Tasks;

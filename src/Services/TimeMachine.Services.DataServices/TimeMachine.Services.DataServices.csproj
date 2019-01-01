@@ -5,7 +5,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Data\TimeMachine.Data.Common\TimeMachine.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\TimeMachine.Data.Models\TimeMachine.Data.Models.csproj" />
     <ProjectReference Include="..\..\Data\TimeMachine.Data\TimeMachine.Data.csproj" />
     <ProjectReference Include="..\TimeMachine.Services.Mapper\TimeMachine.Services.Mapper.csproj" />

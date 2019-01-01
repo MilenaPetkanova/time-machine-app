@@ -1,7 +1,6 @@
 ﻿namespace SandBox
 {
     using TimeMachine.Data;
-    using TimeMachine.Data.Common;
     using Microsoft.EntityFrameworkCore;
     using Microsoft.Extensions.Configuration;
     using Microsoft.Extensions.DependencyInjection;
@@ -10,7 +9,7 @@
     using System.Linq;
     using System.Text;
     using TimeMachine.Web.Models;
-    using TimeMachine.Data.Common.Contracts;
+    using TimeMachine.Data.Contracts;
 
     public class Program
     {

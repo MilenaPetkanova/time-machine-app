@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Data\TimeMachine.Data.Common\TimeMachine.Data.Common.csproj" />
     <ProjectReference Include="..\..\Data\TimeMachine.Data.Models\TimeMachine.Data.Models.csproj" />
     <ProjectReference Include="..\..\Services\TimeMachine.Services.DataServices\TimeMachine.Services.DataServices.csproj" />
   </ItemGroup>

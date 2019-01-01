@@ -5,7 +5,7 @@
     using System.Threading.Tasks;
     using Microsoft.EntityFrameworkCore;
     using TimeMachine.Web.Models;
-    using TimeMachine.Data.Common.Contracts;
+    using TimeMachine.Data.Contracts;
 
     public class DbRepository<TEntity> : IRepository<TEntity>, IDisposable
         where TEntity : class
