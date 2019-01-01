@@ -10,6 +10,7 @@
     using System.Linq;
     using System.Text;
     using TimeMachine.Web.Models;
+    using TimeMachine.Data.Common.Contracts;
 
     public class Program
     {

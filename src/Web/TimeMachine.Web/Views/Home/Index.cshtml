@@ -1,15 +1,29 @@
-﻿@model IEnumerable<TimeMachine.Services.Models.Home.IndexUserViewModel>;
+﻿@model TimeMachine.Services.Models.TimeMachineUsers.UserProfileViewModel;
+
+@inject SignInManager<TimeMachineUser> SignInManager
+@inject UserManager<TimeMachineUser> UserManager
 
 @{
 	ViewData["Title"] = "Home Page";
 }
 
-<div class="container">
-	<div class="list-group">
-		@foreach (var userProfile in Model)
-		{
-			<a href="#" class="list-group-item list-group-item-action">@userProfile.FullName</a>
-			<a href="#" class="list-group-item list-group-item-action">@userProfile.BirthDate</a>
-		}
+
+@if (SignInManager.IsSignedIn(User))
+{
+	<div class="container">
+		<div class="list-group">
+			<a href="#" class="list-group-item list-group-item-action">@Model.FullName</a>
+			<a href="#" class="list-group-item list-group-item-action">@Model.BirthDate</a>
+
+			@foreach (var modelStory in Model.Stories)
+			{
+				<a href="#" class="list-group-item list-group-item-action">@modelStory.TextContent</a>
+			}
+		</div>
 	</div>
-</div>
+}
+else
+{
+
+}
+

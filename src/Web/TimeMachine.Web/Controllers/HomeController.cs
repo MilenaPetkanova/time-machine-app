@@ -7,22 +7,40 @@
     using TimeMachine.Web.Areas.Identity.Data;
     using TimeMachine.Services.DataServices.Contracts;
     using TimeMachine.Services.Models;
+    using TimeMachine.Services.Models.TimeMachineUsers;
+    using Microsoft.AspNetCore.Authorization;
 
     public class HomeController : BaseController
     {
         private readonly IUsersService _usersService;
+        private readonly IStoriesService _storiesService;
 
-        public HomeController(UserManager<TimeMachineUser> userManager, SignInManager<TimeMachineUser> signInManager, IMapper mapper, IUsersService usersService)
+        public HomeController(UserManager<TimeMachineUser> userManager, SignInManager<TimeMachineUser> signInManager, IMapper mapper, 
+            IUsersService usersService, IStoriesService storiesService)
             : base(userManager, signInManager, mapper)
         {
-            this._usersService = usersService;
+            this._usersService = usersService;  
+            this._storiesService = storiesService;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
-            var usersViewModels = this._usersService.GetAllPublic();
+            if (this._signInManager.IsSignedIn(User))
+            {
+                var currentUserId = _userManager.GetUserId(User);
+                var currentUser = this._usersService.GetUserById(currentUserId);
 
-            return this.View(usersViewModels);
+                var userProfileViewModel = this._mapper.Map<UserProfileViewModel>(currentUser);
+
+                var userStoryViewModels = this._storiesService.GetLastUserStories(currentUserId, 5);
+
+                userProfileViewModel.Stories = userStoryViewModels;
+
+                return this.View(userProfileViewModel);
+            }
+
+            return this.View();
         }
 
         public IActionResult About()

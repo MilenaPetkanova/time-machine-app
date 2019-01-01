@@ -13,13 +13,13 @@
     using Microsoft.AspNetCore.Authentication.Cookies;
     using TimeMachine.Web.Models;
     using TimeMachine.Web.Areas.Identity.Data;
-    using TimeMachine.Services.Extensions;
     using TimeMachine.Services.Mapper;
     using TimeMachine.Data.Common;
     using TimeMachine.Data;
     using TimeMachine.Services.DataServices.Contracts;
     using TimeMachine.Services.DataServices;
     using TimeMachine.Data.Common.Contracts;
+    using TimeMachine.Services.Extensions;
 
     public class Startup
     {
@@ -86,7 +86,8 @@
 
             // App Servises Configurations
             services.AddScoped(typeof(IRepository<>), typeof(DbRepository<>));
-            services.AddScoped<IStoriesService, StoriesService>();
+            //services.AddScoped<IUsersService, UsersService>();
+            //services.AddScoped<IStoriesService, StoriesService>();
 
         }
 

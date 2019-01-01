@@ -5,7 +5,7 @@
     using Microsoft.AspNetCore.Mvc;
     using TimeMachine.Web.Areas.Identity.Data;
 
-    public class BaseController : Controller
+    public abstract class BaseController : Controller
     {
         protected readonly UserManager<TimeMachineUser> _userManager;
         protected readonly SignInManager<TimeMachineUser> _signInManager;

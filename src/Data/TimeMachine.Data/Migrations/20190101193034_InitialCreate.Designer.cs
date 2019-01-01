@@ -10,8 +10,8 @@ using TimeMachine.Web.Models;
 namespace TimeMachine.Data.Migrations
 {
     [DbContext(typeof(TimeMachineContext))]
-    [Migration("20181225172331_RemoveTableUserProfile")]
-    partial class RemoveTableUserProfile
+    [Migration("20190101193034_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -131,81 +131,66 @@ namespace TimeMachine.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("TimeMachine.Data.Models.UserProfile.Letter", b =>
+            modelBuilder.Entity("TimeMachine.Data.Models.Posts.Post", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreatedOn");
+                    b.Property<string>("Discriminator")
+                        .IsRequired();
 
-                    b.Property<int>("CurrentUserAge");
+                    b.Property<string>("Name");
 
-                    b.Property<string>("SenderFullName");
-
-                    b.Property<string>("SenderRelation");
-
-                    b.Property<string>("TextContent");
-
-                    b.Property<int?>("UserId");
-
-                    b.Property<string>("UserId1");
+                    b.Property<int>("ReaderProfileId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("ReaderProfileId");
 
-                    b.ToTable("Letters");
+                    b.ToTable("Post");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Post");
                 });
 
-            modelBuilder.Entity("TimeMachine.Data.Models.UserProfile.Photo", b =>
+            modelBuilder.Entity("TimeMachine.Data.Models.ReaderProfile", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Caption");
+                    b.Property<DateTime>("BirthdayDate");
 
-                    b.Property<DateTime>("CapturedOn");
+                    b.Property<string>("FirstName");
 
-                    b.Property<string>("Title");
+                    b.Property<string>("LastName");
 
-                    b.Property<DateTime>("UploadedOn");
+                    b.Property<string>("TimeMachineUserId");
 
-                    b.Property<string>("Url");
-
-                    b.Property<int?>("UserId");
-
-                    b.Property<string>("UserId1");
+                    b.Property<string>("userId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("TimeMachineUserId");
 
-                    b.ToTable("Photos");
+                    b.ToTable("ReaderProfiles");
                 });
 
-            modelBuilder.Entity("TimeMachine.Data.Models.UserProfile.Story", b =>
+            modelBuilder.Entity("TimeMachine.Data.Models.Tag", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<DateTime>("CreatedOn");
+                    b.Property<string>("Name");
 
-                    b.Property<int>("CurrentUserAge");
-
-                    b.Property<string>("TextContent");
-
-                    b.Property<int?>("UserId");
-
-                    b.Property<string>("UserId1");
+                    b.Property<int>("PostId");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("UserId1");
+                    b.HasIndex("PostId");
 
-                    b.ToTable("Stories");
+                    b.ToTable("Tags");
                 });
 
             modelBuilder.Entity("TimeMachine.Web.Areas.Identity.Data.TimeMachineUser", b =>
@@ -215,19 +200,17 @@ namespace TimeMachine.Data.Migrations
 
                     b.Property<int>("AccessFailedCount");
 
-                    b.Property<DateTime>("BirthDate");
-
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken();
-
-                    b.Property<string>("CreatorFullName");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256);
 
                     b.Property<bool>("EmailConfirmed");
 
-                    b.Property<string>("FullName");
+                    b.Property<string>("FirstName");
+
+                    b.Property<string>("LastName");
 
                     b.Property<bool>("LockoutEnabled");
 
@@ -263,6 +246,64 @@ namespace TimeMachine.Data.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
+                });
+
+            modelBuilder.Entity("TimeMachine.Data.Models.Posts.FamillyTree", b =>
+                {
+                    b.HasBaseType("TimeMachine.Data.Models.Posts.Post");
+
+                    b.Property<string>("TextContent");
+
+                    b.HasDiscriminator().HasValue("FamillyTree");
+                });
+
+            modelBuilder.Entity("TimeMachine.Data.Models.Posts.Photo", b =>
+                {
+                    b.HasBaseType("TimeMachine.Data.Models.Posts.Post");
+
+                    b.Property<string>("Caption");
+
+                    b.Property<DateTime>("CapturedOn");
+
+                    b.Property<string>("Title");
+
+                    b.Property<DateTime>("UploadedOn");
+
+                    b.Property<string>("Url");
+
+                    b.HasDiscriminator().HasValue("Photo");
+                });
+
+            modelBuilder.Entity("TimeMachine.Data.Models.Posts.Story", b =>
+                {
+                    b.HasBaseType("TimeMachine.Data.Models.Posts.Post");
+
+                    b.Property<string>("TextContent")
+                        .HasColumnName("Story_TextContent");
+
+                    b.HasDiscriminator().HasValue("Story");
+                });
+
+            modelBuilder.Entity("TimeMachine.Data.Models.Posts.Video", b =>
+                {
+                    b.HasBaseType("TimeMachine.Data.Models.Posts.Post");
+
+                    b.Property<string>("Caption")
+                        .HasColumnName("Video_Caption");
+
+                    b.Property<DateTime>("CapturedOn")
+                        .HasColumnName("Video_CapturedOn");
+
+                    b.Property<string>("Title")
+                        .HasColumnName("Video_Title");
+
+                    b.Property<DateTime>("UploadedOn")
+                        .HasColumnName("Video_UploadedOn");
+
+                    b.Property<string>("Url")
+                        .HasColumnName("Video_Url");
+
+                    b.HasDiscriminator().HasValue("Video");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -310,25 +351,27 @@ namespace TimeMachine.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("TimeMachine.Data.Models.UserProfile.Letter", b =>
+            modelBuilder.Entity("TimeMachine.Data.Models.Posts.Post", b =>
                 {
-                    b.HasOne("TimeMachine.Web.Areas.Identity.Data.TimeMachineUser", "User")
-                        .WithMany("Letters")
-                        .HasForeignKey("UserId1");
+                    b.HasOne("TimeMachine.Data.Models.ReaderProfile", "ReaderProfile")
+                        .WithMany("Posts")
+                        .HasForeignKey("ReaderProfileId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
-            modelBuilder.Entity("TimeMachine.Data.Models.UserProfile.Photo", b =>
+            modelBuilder.Entity("TimeMachine.Data.Models.ReaderProfile", b =>
                 {
-                    b.HasOne("TimeMachine.Web.Areas.Identity.Data.TimeMachineUser", "User")
-                        .WithMany("Photos")
-                        .HasForeignKey("UserId1");
+                    b.HasOne("TimeMachine.Web.Areas.Identity.Data.TimeMachineUser", "TimeMachineUser")
+                        .WithMany("ReaderProfiles")
+                        .HasForeignKey("TimeMachineUserId");
                 });
 
-            modelBuilder.Entity("TimeMachine.Data.Models.UserProfile.Story", b =>
+            modelBuilder.Entity("TimeMachine.Data.Models.Tag", b =>
                 {
-                    b.HasOne("TimeMachine.Web.Areas.Identity.Data.TimeMachineUser", "User")
-                        .WithMany("Stories")
-                        .HasForeignKey("UserId1");
+                    b.HasOne("TimeMachine.Data.Models.Posts.Post", "Post")
+                        .WithMany("Tags")
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 #pragma warning restore 612, 618
         }

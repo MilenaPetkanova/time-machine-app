@@ -40,7 +40,9 @@ namespace TimeMachine.Data.Migrations
                     TwoFactorEnabled = table.Column<bool>(nullable: false),
                     LockoutEnd = table.Column<DateTimeOffset>(nullable: true),
                     LockoutEnabled = table.Column<bool>(nullable: false),
-                    AccessFailedCount = table.Column<int>(nullable: false)
+                    AccessFailedCount = table.Column<int>(nullable: false),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -153,6 +155,82 @@ namespace TimeMachine.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "ReaderProfiles",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    FirstName = table.Column<string>(nullable: true),
+                    LastName = table.Column<string>(nullable: true),
+                    BirthdayDate = table.Column<DateTime>(nullable: false),
+                    userId = table.Column<string>(nullable: true),
+                    TimeMachineUserId = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ReaderProfiles", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_ReaderProfiles_AspNetUsers_TimeMachineUserId",
+                        column: x => x.TimeMachineUserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Post",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true),
+                    ReaderProfileId = table.Column<int>(nullable: false),
+                    Discriminator = table.Column<string>(nullable: false),
+                    TextContent = table.Column<string>(nullable: true),
+                    Url = table.Column<string>(nullable: true),
+                    Title = table.Column<string>(nullable: true),
+                    Caption = table.Column<string>(nullable: true),
+                    UploadedOn = table.Column<DateTime>(nullable: true),
+                    CapturedOn = table.Column<DateTime>(nullable: true),
+                    Story_TextContent = table.Column<string>(nullable: true),
+                    Video_Url = table.Column<string>(nullable: true),
+                    Video_Title = table.Column<string>(nullable: true),
+                    Video_Caption = table.Column<string>(nullable: true),
+                    Video_UploadedOn = table.Column<DateTime>(nullable: true),
+                    Video_CapturedOn = table.Column<DateTime>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Post", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Post_ReaderProfiles_ReaderProfileId",
+                        column: x => x.ReaderProfileId,
+                        principalTable: "ReaderProfiles",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Tags",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Name = table.Column<string>(nullable: true),
+                    PostId = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tags", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Tags_Post_PostId",
+                        column: x => x.PostId,
+                        principalTable: "Post",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -191,6 +269,21 @@ namespace TimeMachine.Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Post_ReaderProfileId",
+                table: "Post",
+                column: "ReaderProfileId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ReaderProfiles_TimeMachineUserId",
+                table: "ReaderProfiles",
+                column: "TimeMachineUserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Tags_PostId",
+                table: "Tags",
+                column: "PostId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -211,7 +304,16 @@ namespace TimeMachine.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "Tags");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Post");
+
+            migrationBuilder.DropTable(
+                name: "ReaderProfiles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

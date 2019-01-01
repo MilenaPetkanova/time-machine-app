@@ -4,8 +4,7 @@
     using Moq;
     using Xunit;
 
-    using TimeMachine.Data.Common;
-    using TimeMachine.Data.Models.UserProfile;
+    using TimeMachine.Data.Common.Contracts;
     using System.Collections.Generic;
     using System.Linq;
     using TimeMachine.Web.Areas.Identity.Data;

@@ -7,6 +7,6 @@
     {
         IEnumerable<StoryViewModel> GetAllUserStories(string userId);
 
-        IEnumerable<StoryViewModel> GetUserStories(string userId, int storiesCount);
+        IEnumerable<StoryViewModel> GetLastUserStories(string userId, int storiesCount);
     }
 }

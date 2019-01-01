@@ -143,6 +143,12 @@ The software architecture pattern used in this app is Model View Controller (MVC
 - Letter
 
 ## TODO:
+- General:
+  - fix encapsulation everywhere
+  - fix validation and security
+- TimeMachine.Web.Areas.Identity.Data.TimeMachineUser
+  - change namespace
+  - add property CurrentAgeto model and to database
 - TimeMachine.Services.Extention
   - move ApplicationBuilderExtension static class to TimeMachine.Data and rename to DataSeeder
 - TimeMachine.Services.Mapper

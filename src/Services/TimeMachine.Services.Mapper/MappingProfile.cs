@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using System;
+using TimeMachine.Services.Models.TimeMachineUsers;
 using TimeMachine.Web.Areas.Identity.Data;
 
 namespace TimeMachine.Services.Mapper
@@ -8,8 +9,8 @@ namespace TimeMachine.Services.Mapper
     {
         public MappingProfile()
         {
-            //CreateMap<TimeMachineUser, UserDto>();
-            //CreateMap<UserDto, User>();
+            CreateMap<TimeMachineUser, UserProfileViewModel>();
+            CreateMap<UserProfileViewModel, TimeMachineUser>();
         }
     }
 }
