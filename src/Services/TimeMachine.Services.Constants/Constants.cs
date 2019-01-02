@@ -11,5 +11,8 @@
         public const string UserFullName = "Test User Seeded";
         public const string UserBirthDate = "9/1/1991";
 
+        public const string TagName = "TestTag";
+
+
     }
 }

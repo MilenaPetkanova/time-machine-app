@@ -33,6 +33,10 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeMachine.Services.Mapper
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TimeMachine.Services.DataServices.Tests", "Tests\TimeMachine.Services.DataServices.Tests\TimeMachine.Services.DataServices.Tests.csproj", "{9510102B-3A72-442F-809B-52E026DDA2F6}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TimeMachine.Data.Tests", "Tests\TimeMachine.Data.Tests\TimeMachine.Data.Tests.csproj", "{0A15E143-BA02-4A22-83BC-15FD5239F5D6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Constants", "Tests\Constants\Constants.csproj", "{E4EE2D91-9F04-44C6-BF87-55B2888C11F0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -83,6 +87,14 @@ Global
 		{9510102B-3A72-442F-809B-52E026DDA2F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9510102B-3A72-442F-809B-52E026DDA2F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9510102B-3A72-442F-809B-52E026DDA2F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0A15E143-BA02-4A22-83BC-15FD5239F5D6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0A15E143-BA02-4A22-83BC-15FD5239F5D6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0A15E143-BA02-4A22-83BC-15FD5239F5D6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0A15E143-BA02-4A22-83BC-15FD5239F5D6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E4EE2D91-9F04-44C6-BF87-55B2888C11F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E4EE2D91-9F04-44C6-BF87-55B2888C11F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E4EE2D91-9F04-44C6-BF87-55B2888C11F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E4EE2D91-9F04-44C6-BF87-55B2888C11F0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -99,6 +111,8 @@ Global
 		{7D97D563-CF05-42D7-BA8A-D1E935B6261B} = {17A09EC7-A986-483B-B503-A41B4511136C}
 		{5BAFEE8E-F912-4A81-8589-9C43FBAFF543} = {17A09EC7-A986-483B-B503-A41B4511136C}
 		{9510102B-3A72-442F-809B-52E026DDA2F6} = {E5E145CD-AD44-44E3-9E89-57BD90E35613}
+		{0A15E143-BA02-4A22-83BC-15FD5239F5D6} = {E5E145CD-AD44-44E3-9E89-57BD90E35613}
+		{E4EE2D91-9F04-44C6-BF87-55B2888C11F0} = {E5E145CD-AD44-44E3-9E89-57BD90E35613}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {F00C5945-7481-4B7F-9012-E87E1131AF63}

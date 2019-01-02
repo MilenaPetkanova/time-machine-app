@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.2</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\TimeMachine.Data.Tests\TimeMachine.Data.Tests.csproj" />
+    <ProjectReference Include="..\TimeMachine.Services.DataServices.Tests\TimeMachine.Services.DataServices.Tests.csproj" />
+  </ItemGroup>
+
+</Project>
